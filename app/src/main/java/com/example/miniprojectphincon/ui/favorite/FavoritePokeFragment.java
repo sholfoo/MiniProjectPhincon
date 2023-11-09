@@ -1,9 +1,12 @@
 package com.example.miniprojectphincon.ui.favorite;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -11,12 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.miniprojectphincon.R;
 import com.example.miniprojectphincon.adapter.FavPokemonRecyclerViewAdapter;
 import com.example.miniprojectphincon.base.BaseFragment;
 import com.example.miniprojectphincon.databinding.FramgmentFavoriteBinding;
+import com.example.miniprojectphincon.model.pokemonfavlist.PokemonFavListAPI;
 import com.example.miniprojectphincon.repository.FavoriteRepository;
 import com.example.miniprojectphincon.viewmodel.FavoriteViewModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -151,9 +158,63 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
         });
     }
 
-    @Override
-    public void onClick(String namePoke, String imagePoke) {
-        //show dialog to rename and release
+    private void releasePokemon(ProgressDialog pd, BottomSheetDialog bottomSheetDialog,String namePoke) {
+        new Handler().postDelayed(() -> {
+            favoriteRepository.onReleasePokemon(namePoke);
+            pd.dismiss();
+            bottomSheetDialog.dismiss();
+            Toast.makeText(requireActivity(), getResources().getString(R.string.ToastReleasePokemon), Toast.LENGTH_SHORT).show();
+            updateDataForUI();
+        }, 2000);
 
+    }
+
+    private void renamePokemon(ProgressDialog pd, BottomSheetDialog bottomSheetDialog, PokemonFavListAPI pokemonFavListAPI) {
+        new Handler().postDelayed(() -> {
+            favoriteRepository.onRenameFavoritePoke(pokemonFavListAPI);
+            pd.dismiss();
+            bottomSheetDialog.dismiss();
+            Toast.makeText(requireActivity(), getResources().getString(R.string.ToastRenamePokemon), Toast.LENGTH_SHORT).show();
+            updateDataForUI();
+        }, 2000);
+
+    }
+
+    @Override
+    public void onClick(PokemonFavListAPI pokemonFavListAPI) {
+        //show dialog to rename and release
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(mContext);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet);
+        LinearLayout actionRename = bottomSheetDialog.findViewById(R.id.actionRename);
+        LinearLayout actionRelease = bottomSheetDialog.findViewById(R.id.actionRelease);
+        bottomSheetDialog.show();
+
+        actionRelease.setOnClickListener(view -> {
+            ProgressDialog progressdialog = new ProgressDialog(mContext);
+            progressdialog.setMessage("Releasing Pokemon...");
+            progressdialog.show();
+            releasePokemon(progressdialog, bottomSheetDialog, pokemonFavListAPI.getPokeName());
+        });
+
+        actionRename.setOnClickListener(view -> {
+            String newName;
+            MaterialDialog.Builder inputDialog = new MaterialDialog.Builder(mContext);
+            inputDialog.negativeText(android.R.string.cancel)
+                    .positiveText(android.R.string.ok)
+                    .onPositive((dialog, which) -> {
+                        // rename pokemon
+                        pokemonFavListAPI.setPokeName(dialog.getInputEditText().getText().toString());
+                        ProgressDialog progressdialog = new ProgressDialog(mContext);
+                        progressdialog.setMessage("Renaming Pokemon...");
+                        progressdialog.show();
+                        renamePokemon(progressdialog, bottomSheetDialog, pokemonFavListAPI);
+
+                    })
+                    .content("Rename Pokemons")
+                    .input("Rename Your Poke", "", (dialog, input) -> {
+
+                    })
+                    .show();
+        });
     }
 }

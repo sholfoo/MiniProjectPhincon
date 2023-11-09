@@ -68,7 +68,7 @@ public class FavPokemonRecyclerViewAdapter extends ListAdapter<PokemonFavListAPI
 //                                }).crossfade(true))
                 .into(holder.pokemonItemBinding.imagePoke);
 
-        holder.itemView.setOnClickListener(view -> onItemClickListener.onClick(namePoke, imagePoke));
+        holder.itemView.setOnClickListener(view -> onItemClickListener.onClick(item));
     }
 
     @Override
@@ -111,6 +111,6 @@ public class FavPokemonRecyclerViewAdapter extends ListAdapter<PokemonFavListAPI
     }
 
     public interface OnItemClickListener {
-        void onClick(String namePoke, String imagePoke);
+        void onClick(PokemonFavListAPI pokemonFavListAPIItem);
     }
 }

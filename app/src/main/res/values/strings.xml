@@ -10,6 +10,8 @@
     <string name="exp">EXP</string>
     <string name="ToastForOfflineMode">You are viewing in Offline Mode</string>
     <string name="ToastCatchPokemon">Congratulation, you catch pokemon!</string>
+    <string name="ToastReleasePokemon">Your pokemon has been released!</string>
+    <string name="ToastRenamePokemon">Your pokemon has a new name!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
