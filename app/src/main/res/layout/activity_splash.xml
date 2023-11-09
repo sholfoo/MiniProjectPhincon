@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingVertical="@dimen/view_padding_xx_wide">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgText"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:src="@drawable/pokemon_text_logo"
+                android:scaleType="fitCenter"
+                tools:ignore="contentDescription"/>
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/pokemon_image_logo"
+                tools:ignore="contentDescription" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

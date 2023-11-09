@@ -1,0 +1,62 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="view_padding_extra_large">64dip</dimen>
+    <dimen name="view_padding_extra_wide">24dip</dimen>
+    <dimen name="view_padding_xx_wide">32dip</dimen>
+    <dimen name="view_padding_normal">12dip</dimen>
+    <dimen name="view_padding_wide">16dip</dimen>
+    <dimen name="view_padding_default">8dip</dimen>
+    <dimen name="view_padding_half">4dip</dimen>
+    <dimen name="view_padding_small">2dip</dimen>
+    <dimen name="view_corner_radius">6dp</dimen>
+    <dimen name="column_width">120dp</dimen>
+    
+    <dimen name="view_padding_corner_radius_button">8dip</dimen>
+
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_title">18sp</dimen>
+
+    <dimen name="view_padding_minus">-32dip</dimen>
+
+
+    <dimen name="call_buttons_diameter">64dp</dimen>
+    <dimen name="call_buttons_padding">16dp</dimen>
+    <dimen name="call_caller_name_top_avatar_margin">16dp</dimen>
+    <dimen name="call_buttons_margin">32dp</dimen>
+    <dimen name="call_avatar_top_margin">64dp</dimen>
+    <dimen name="call_horizontal_avatar_start_margin">24dp</dimen>
+    <dimen name="call_horizontal_avatar_end_margin">24dp</dimen>
+    <dimen name="call_opponent_avatar_diameter">176dp</dimen>
+    <dimen name="call_avatar_top_margin_plus_height_actionbar">112dp</dimen>
+    <dimen name="income_call_buttons_margin">80dp</dimen>
+    <dimen name="also_in_call_text_left_right_padding">64dp</dimen>
+    <dimen name="toggle_button_params">60dp</dimen>
+
+    <dimen name="grid_item_divider">1dp</dimen>
+    <dimen name="item_height">136dp</dimen>
+
+    <dimen name="padding_2">2dip</dimen>
+    <dimen name="padding_4">4dip</dimen>
+    <dimen name="padding_8">8dip</dimen>
+    <dimen name="padding_16">16dip</dimen>
+    <dimen name="padding_24">24dip</dimen>
+    <dimen name="padding_32">32dip</dimen>
+    <dimen name="padding_48">48dip</dimen>
+    <dimen name="padding_56">56dip</dimen>
+    <dimen name="padding_64">64dip</dimen>
+    <dimen name="padding_80">80dip</dimen>
+    <dimen name="padding_120">120dip</dimen>
+    <dimen name="padding_200">200dp</dimen>
+    <dimen name="padding_240">240dp</dimen>
+    <dimen name="padding_400">400dp</dimen>
+    <dimen name="padding_500">500dp</dimen>
+
+
+
+
+
+</resources>

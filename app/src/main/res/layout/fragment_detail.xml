@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paper_color"
+    tools:context="ui.detail.DetailPokeFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants" >
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true" />
+
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:id="@+id/cardView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?android:actionBarSize"-->
+<!--            android:layout_marginTop="0dp">-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/arrow"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/ic_arrow"-->
+<!--                tools:ignore="ContentDescription" />-->
+<!--            -->
+<!--        </com.google.android.material.card.MaterialCardView>-->
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/ly_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/fire"
+            android:orientation="horizontal"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/action_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:background="?android:selectableItemBackground"
+                    android:paddingStart="@dimen/view_padding_wide"
+                    android:paddingLeft="@dimen/view_padding_wide"
+                    android:paddingEnd="@dimen/view_padding_wide"
+                    android:paddingRight="@dimen/view_padding_wide"
+                    android:src="@drawable/ic_arrow"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/namePoke"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_toEndOf="@id/action_home"
+                    android:layout_centerVertical="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/lyImagePoke"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ly_toolbar"
+            android:layout_marginHorizontal="@dimen/view_padding_extra_wide"
+            android:layout_marginTop="@dimen/view_padding_extra_wide"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:id="@+id/imagePoke"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/view_padding_extra_wide"
+                android:scaleType="fitXY"
+                tools:ignore="ContentDescription" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/lyWeightHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lyImagePoke"
+            android:paddingHorizontal="@dimen/view_padding_extra_wide"
+            android:paddingVertical="@dimen/view_padding_wide"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/weight"
+                app:tint="@color/fire" />
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_padding_default"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/view_padding_wide"
+                android:src="@drawable/height"
+                app:tint="@color/fire" />
+
+            <TextView
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_padding_default"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/view_padding_wide"
+                android:src="@drawable/power"
+                app:tint="@color/fire" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/typeList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_padding_default"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_type_item" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/catchPokemon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="@dimen/padding_80"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/pokemon_image_logo"
+            android:layout_below="@id/lyWeightHeight"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/catchPokemon"
+            android:layout_marginStart="@dimen/view_padding_default"
+            android:layout_marginEnd="15dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:text="Catch Pokemon!"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>
