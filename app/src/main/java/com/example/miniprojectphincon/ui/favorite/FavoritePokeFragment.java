@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.miniprojectphincon.R;
 import com.example.miniprojectphincon.adapter.FavPokemonRecyclerViewAdapter;
@@ -59,11 +58,11 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        pullToRefresh();
-        updateDataForUI();
-        updateProgressBarForUI();
-        updateSwipeRefreshLayoutForUI();
-        updateToastForUI();
+        setupPullToRefresh();
+        setupDataForUI();
+        setupProgressBarForUI();
+        setupSwipeRefreshLayoutForUI();
+        setupToastForUI();
         setArrowButton();
         handleOnBackPressed();
 
@@ -75,7 +74,7 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
         }
     }
 
-    private void updateDataForUI() {
+    private void setupDataForUI() {
         favoriteViewModel.getPokemonFavoriteListLiveData().observe(getViewLifecycleOwner(), pokemonList -> {
             if (pokemonList != null) {
                 favPokemonRecyclerViewAdapter.refreshPokemonList(pokemonList);
@@ -83,7 +82,7 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
         });
     }
 
-    private void updateProgressBarForUI() {
+    private void setupProgressBarForUI() {
         favoriteViewModel.getProgressBarLiveData().observe(getViewLifecycleOwner(), aBoolean -> {
             if (checking0 && aBoolean != null) {
                 if (aBoolean) {
@@ -97,7 +96,7 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
         });
     }
 
-    private void updateSwipeRefreshLayoutForUI() {
+    private void setupSwipeRefreshLayoutForUI() {
         favoriteViewModel.getSwipeRefreshLayoutLiveData().observe(getViewLifecycleOwner(), aBoolean -> {
             if (aBoolean != null) {
                 if (checking1 && aBoolean) {
@@ -110,7 +109,7 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
         });
     }
 
-    private void updateToastForUI() {
+    private void setupToastForUI() {
         favoriteViewModel.getToastLiveData().observe(getViewLifecycleOwner(), string -> {
             if (string != null) {
                 if (checking2) {
@@ -128,7 +127,7 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
         });
     }
 
-    private void pullToRefresh() {
+    private void setupPullToRefresh() {
         framgmentFavoriteBinding.swipeRefreshLayout.setOnRefreshListener(() -> {
             favPokemonRecyclerViewAdapter.clearAllOldData();
             favoriteRepository.fetchPokemonList();
@@ -164,7 +163,7 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
             pd.dismiss();
             bottomSheetDialog.dismiss();
             Toast.makeText(requireActivity(), getResources().getString(R.string.ToastReleasePokemon), Toast.LENGTH_SHORT).show();
-            updateDataForUI();
+            setupDataForUI();
         }, 2000);
 
     }
@@ -175,7 +174,7 @@ public class FavoritePokeFragment extends BaseFragment implements FavPokemonRecy
             pd.dismiss();
             bottomSheetDialog.dismiss();
             Toast.makeText(requireActivity(), getResources().getString(R.string.ToastRenamePokemon), Toast.LENGTH_SHORT).show();
-            updateDataForUI();
+            setupDataForUI();
         }, 2000);
 
     }

@@ -10,6 +10,9 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -137,9 +140,11 @@ public class DetailPokeFragment extends BaseFragment {
     private void setCatchButton() {
         fragmentDetailBinding.catchPokemon.setOnClickListener(view -> {
             ProgressDialog progressdialog = new ProgressDialog(mContext);
-            progressdialog.setMessage("Catching Pokemon...");
-            progressdialog.show();
+//            progressdialog.setMessage("Catching Pokemon...");
+//            progressdialog.show();
+            fragmentDetailBinding.catchPokemon.animate().rotation(1110).setDuration(1000);
             catchPokemon(progressdialog);
+
         });
     }
 
@@ -156,9 +161,8 @@ public class DetailPokeFragment extends BaseFragment {
         pokemonFavListAPI.setWeightFormatted(weight);
         new Handler().postDelayed(() -> {
             favoriteRepository.onInsertPokemonIntoFavorite(pokemonFavListAPI);
-            pd.dismiss();
             Toast.makeText(requireActivity(), getResources().getString(R.string.ToastCatchPokemon), Toast.LENGTH_SHORT).show();
-        }, 2000);
+        }, 200);
 
     }
 
